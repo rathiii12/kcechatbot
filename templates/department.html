@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Departments - Kings College of Engineering</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        .kce-departments-page {
+            min-height: 100vh;
+            background: #f5f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+        .dept-header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 22px 35px;
+        }
+
+        .dept-header-inner {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .dept-back {
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 10px;
+            background: #e9f2fa;
+            color: #0b4f8a;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .dept-back:hover {
+            background: #0b4f8a;
+            color: white;
+        }
+
+        .dept-header h1 {
+            margin: 0;
+            color: #123f68;
+            font-size: 25px;
+        }
+
+        .dept-header p {
+            margin: 5px 0 0;
+            color: #7b8794;
+            font-size: 13px;
+        }
+
+        .dept-container {
+            width: min(1100px, 92%);
+            margin: 35px auto;
+        }
+
+        .dept-intro {
+            margin-bottom: 25px;
+        }
+
+        .dept-intro h2 {
+            margin: 0 0 8px;
+            color: #173f63;
+        }
+
+        .dept-intro p {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        .dept-search {
+            background: white;
+            border: 1px solid #dfe5eb;
+            border-radius: 12px;
+            padding: 13px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .dept-search span {
+            font-size: 18px;
+        }
+
+        .dept-search input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .dept-card {
+            background: white;
+            border: 1px solid #e1e7ed;
+            border-radius: 16px;
+            padding: 22px;
+            display: flex;
+            gap: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.04);
+            transition: 0.2s;
+        }
+
+        .dept-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .dept-icon {
+            width: 58px;
+            height: 58px;
+            min-width: 58px;
+            border-radius: 14px;
+            background: #e9f2fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .dept-info h3 {
+            margin: 0 0 8px;
+            color: #173f63;
+            font-size: 17px;
+        }
+
+        .dept-info p {
+            margin: 0 0 15px;
+            color: #6b7280;
+            line-height: 1.5;
+            font-size: 13px;
+        }
+
+        .dept-info button {
+            border: none;
+            background: #0b4f8a;
+            color: white;
+            padding: 9px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .dept-info button:hover {
+            background: #083d6b;
+        }
+
+        @media (max-width: 750px) {
+
+            .dept-header {
+                padding: 18px;
+            }
+
+            .dept-container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .dept-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 450px) {
+
+            .dept-card {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="kce-departments-page">
+
+
+    <header class="dept-header">
+
+        <div class="dept-header-inner">
+
+            <button
+                class="dept-back"
+                onclick="window.location.href='/chat'">
+                ←
+            </button>
+
+            <div>
+
+                <h1>Departments</h1>
+
+                <p>
+                    Explore academic departments at Kings College of Engineering
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="dept-container">
+
+
+        <div class="dept-intro">
+
+            <h2>🏛️ Academic Departments</h2>
+
+            <p>
+                Explore the undergraduate departments and programmes offered at KCE.
+            </p>
+
+        </div>
+
+
+        <div class="dept-search">
+
+            <span>🔍</span>
+
+            <input
+                type="text"
+                id="departmentSearch"
+                placeholder="Search departments..."
+                autocomplete="off">
+
+        </div>
+
+
+        <div class="dept-grid" id="departmentGrid">
+
+
+            <!-- CSE -->
+
+            <div class="dept-card">
+
+                <div class="dept-icon">
+                    💻
+                </div>
+
+                <div class="dept-info">
+
+                    <h3>
+                        Computer Science and Engineering
+                    </h3>
+
+                    <p>
+                        Study programming, software development,
+                        artificial intelligence, databases and modern
+                        computing technologies.
+                    </p>
+
+                    <button
+                        onclick="viewDepartment('Computer Science and Engineering')">
+
+                        View Details →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- AI & DS -->
+
+            <div class="dept-card">
+
+                <div class="dept-icon">
+                    🤖
+                </div>
+
+                <div class="dept-info">
+
+                    <h3>
+                        Artificial Intelligence and Data Science
+                    </h3>
+
+                    <p>
+                        Explore artificial intelligence, machine learning,
+                        data analytics and intelligent systems.
+                    </p>
+
+                    <button
+                        onclick="viewDepartment('Artificial Intelligence and Data Science')">
+
+                        View Details →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ECE -->
+
+            <div class="dept-card">
+
+                <div class="dept-icon">
+                    📡
+                </div>
+
+                <div class="dept-info">
+
+                    <h3>
+                        Electronics and Communication Engineering
+                    </h3>
+
+                    <p>
+                        Learn electronics, communication systems,
+                        embedded systems and digital technologies.
+                    </p>
+
+                    <button
+                        onclick="viewDepartment('Electronics and Communication Engineering')">
+
+                        View Details →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EEE -->
+
+            <div class="dept-card">
+
+                <div class="dept-icon">
+                    ⚡
+                </div>
+
+                <div class="dept-info">
+
+                    <h3>
+                        Electrical and Electronics Engineering
+                    </h3>
+
+                    <p>
+                        Study electrical systems, power electronics,
+                        electrical machines and automation.
+                    </p>
+
+                    <button
+                        onclick="viewDepartment('Electrical and Electronics Engineering')">
+
+                        View Details →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MECH -->
+
+            <div class="dept-card">
+
+                <div class="dept-icon">
+                    ⚙️
+                </div>
+
+                <div class="dept-info">
+
+                    <h3>
+                        Mechanical Engineering
+                    </h3>
+
+                    <p>
+                        Explore mechanical design, manufacturing,
+                        engineering systems and modern technologies.
+                    </p>
+
+                    <button
+                        onclick="viewDepartment('Mechanical Engineering')">
+
+                        View Details →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CIVIL -->
+
+            <div class="dept-card">
+
+                <div class="dept-icon">
+                    🏗️
+                </div>
+
+                <div class="dept-info">
+
+                    <h3>
+                        Civil Engineering
+                    </h3>
+
+                    <p>
+                        Learn structural engineering, construction,
+                        infrastructure and environmental engineering.
+                    </p>
+
+                    <button
+                        onclick="viewDepartment('Civil Engineering')">
+
+                        View Details →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- IT -->
+
+            <div class="dept-card">
+
+                <div class="dept-icon">
+                    🖥️
+                </div>
+
+                <div class="dept-info">
+
+                    <h3>
+                        Information Technology
+                    </h3>
+
+                    <p>
+                        Study web technologies, databases, networking,
+                        cloud computing and modern IT solutions.
+                    </p>
+
+                    <button
+                        onclick="viewDepartment('Information Technology')">
+
+                        View Details →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+function viewDepartment(department) {
+
+    localStorage.setItem(
+        "selectedDepartment",
+        department
+    );
+
+    window.location.href = "/department-details";
+
+}
+
+
+document
+    .getElementById("departmentSearch")
+    .addEventListener("input", function () {
+
+        const searchValue =
+            this.value.toLowerCase().trim();
+
+        const cards =
+            document.querySelectorAll(".dept-card");
+
+
+        cards.forEach(function (card) {
+
+            const departmentName =
+                card.querySelector("h3")
+                    .textContent
+                    .toLowerCase();
+
+
+            if (departmentName.includes(searchValue)) {
+
+                card.style.display = "flex";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KCE Campus</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f7f5ff;
+            color: #29294b;
+        }
+
+        .campus-page {
+            min-height: 100vh;
+            padding: 30px 45px 50px;
+        }
+
+        /* HEADER */
+
+        .campus-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+        }
+
+        .campus-title h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #29294b;
+        }
+
+        .campus-title p {
+            margin: 7px 0 0;
+            color: #77748b;
+            font-size: 15px;
+        }
+
+        .back-btn {
+            border: none;
+            background: #7057b7;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .back-btn:hover {
+            background: #5c459c;
+        }
+
+        /* MAIN CAMPUS IMAGE */
+
+        .campus-main {
+            position: relative;
+            height: 430px;
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(50, 40, 80, 0.12);
+            background: white;
+        }
+
+        .campus-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-overlay {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 35px;
+            color: white;
+            background: linear-gradient(
+                transparent,
+                rgba(0, 0, 0, 0.65)
+            );
+        }
+
+        .main-overlay h2 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+
+        .main-overlay p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        /* SECTION */
+
+        .section-title {
+            margin: 25px 0 18px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .section-title p {
+            margin: 6px 0 0;
+            color: #77748b;
+            font-size: 14px;
+        }
+
+        /* GALLERY */
+
+        .campus-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 7px 22px rgba(50, 40, 80, 0.09);
+            transition: 0.25s;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(50, 40, 80, 0.14);
+        }
+
+        .gallery-image {
+            height: 220px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-content {
+            padding: 18px;
+        }
+
+        .gallery-content h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+            color: #29294b;
+        }
+
+        .gallery-content p {
+            margin: 0;
+            color: #77748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* INFO CARDS */
+
+        .campus-info {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 6px 20px rgba(50, 40, 80, 0.08);
+        }
+
+        .info-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eee8ff;
+            border-radius: 13px;
+            font-size: 22px;
+            margin-bottom: 14px;
+        }
+
+        .info-card h3 {
+            margin: 0 0 8px;
+            font-size: 17px;
+        }
+
+        .info-card p {
+            margin: 0;
+            color: #77748b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1000px) {
+
+            .campus-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .campus-info {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .campus-page {
+                padding: 20px;
+            }
+
+            .campus-header {
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .campus-title h1 {
+                font-size: 25px;
+            }
+
+            .campus-main {
+                height: 300px;
+            }
+
+            .campus-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .campus-info {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="campus-page">
+
+    <!-- HEADER -->
+
+    <div class="campus-header">
+
+        <div class="campus-title">
+            <h1>🏫 KCE Campus</h1>
+            <p>Explore Kings College of Engineering campus</p>
+        </div>
+
+        <button class="back-btn"
+                onclick="window.location.href='/chat'">
+            ← Back
+        </button>
+
+    </div>
+
+
+    <!-- MAIN CAMPUS -->
+
+    <div class="campus-main">
+
+        <img
+            src="{{ url_for('static', filename='images/chatbot2.jpg') }}"
+            alt="Kings College of Engineering">
+
+        <div class="main-overlay">
+
+            <h2>Kings College of Engineering</h2>
+
+            <p>
+                Explore our campus, facilities and student spaces.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FACILITIES -->
+
+    <div class="section-title">
+
+        <h2>Campus Facilities</h2>
+
+        <p>
+            Explore important facilities available at KCE.
+        </p>
+
+    </div>
+
+
+    <div class="campus-gallery">
+
+
+        <!-- CANTEEN -->
+
+        <div class="gallery-card">
+
+            <div class="gallery-image">
+
+                <img
+                    src="{{ url_for('static', filename='images/new_canteen.jpg') }}"
+                    alt="KCE New Canteen">
+
+            </div>
+
+            <div class="gallery-content">
+
+                <h3>🍴 New Canteen Building</h3>
+
+                <p>
+                    A brand new 12,000 sq.ft canteen block
+                    designed to improve seating comfort and
+                    support the increasing student demand.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- LIBRARY -->
+
+        <div class="gallery-card">
+
+            <div class="gallery-image">
+
+                <img
+                    src="{{ url_for('static', filename='images/library.jpg') }}"
+                    alt="KCE Library">
+
+            </div>
+
+            <div class="gallery-content">
+
+                <h3>📚 Central Library</h3>
+
+                <p>
+                    The library provides students with books,
+                    journals, digital resources and reading spaces.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- HOSTEL -->
+
+        <div class="gallery-card">
+
+            <div class="gallery-image">
+
+                <img
+                    src="{{ url_for('static', filename='images/hostel.jpg') }}"
+                    alt="KCE Hostel">
+
+            </div>
+
+            <div class="gallery-content">
+
+                <h3>🏠 Hostel</h3>
+
+                <p>
+                    Separate hostel facilities are available
+                    for boys and girls with dining, study
+                    and recreation facilities.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- LABORATORY -->
+
+        <div class="gallery-card">
+
+            <div class="gallery-image">
+
+                <img
+                    src="{{ url_for('static', filename='images/laboratory.jpg') }}"
+                    alt="KCE Laboratory">
+
+            </div>
+
+            <div class="gallery-content">
+
+                <h3>🧪 Laboratories</h3>
+
+                <p>
+                    Department-based laboratories provide
+                    students with practical and technical
+                    learning facilities.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CAMPUS BUILDING -->
+
+        <div class="gallery-card">
+
+            <div class="gallery-image">
+
+                <img
+                    src="{{ url_for('static', filename='images/chatbot.jpg') }}"
+                    alt="KCE Campus Building">
+
+            </div>
+
+            <div class="gallery-content">
+
+                <h3>🏢 Academic Campus</h3>
+
+                <p>
+                    KCE provides classrooms, academic blocks,
+                    departments and other learning facilities.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- INFORMATION -->
+
+    <div class="section-title">
+
+        <h2>Campus Information</h2>
+
+    </div>
+
+
+    <div class="campus-info">
+
+
+        <div class="info-card">
+
+            <div class="info-icon">📍</div>
+
+            <h3>Campus Location</h3>
+
+            <p>
+                Punalkulam, Near Thanjavur,
+                Gandarvakottai Taluk,
+                Pudukkottai District,
+                Tamil Nadu – 613303.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">🏫</div>
+
+            <h3>Campus Facilities</h3>
+
+            <p>
+                Academic blocks, laboratories, library,
+                hostel, cafeteria and student facilities.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">🏠</div>
+
+            <h3>Hostel Facilities</h3>
+
+            <p>
+                Separate boys and girls hostels with
+                food, study, recreation and other facilities.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">🍴</div>
+
+            <h3>Canteen</h3>
+
+            <p>
+                KCE has a brand new 12,000 sq.ft
+                canteen block for students.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

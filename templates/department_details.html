@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Department Details - Kings College of Engineering
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        .details-page {
+            min-height: 100vh;
+            background: #f5f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* HEADER */
+
+        .details-header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 22px 35px;
+        }
+
+        .details-header-inner {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .details-back {
+            width: 42px;
+            height: 42px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #e9f2fa;
+            color: #0b4f8a;
+
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .details-back:hover {
+            background: #0b4f8a;
+            color: white;
+        }
+
+        .details-header h1 {
+            margin: 0;
+            color: #123f68;
+            font-size: 24px;
+        }
+
+        .details-header p {
+            margin: 5px 0 0;
+            color: #7b8794;
+            font-size: 13px;
+        }
+
+
+        /* MAIN */
+
+        .details-container {
+            width: min(1000px, 92%);
+            margin: 35px auto;
+        }
+
+
+        /* HERO CARD */
+
+        .department-hero {
+            background: linear-gradient(
+                135deg,
+                #0b4f8a,
+                #176da9
+            );
+
+            color: white;
+
+            border-radius: 18px;
+
+            padding: 35px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .department-hero-icon {
+            width: 65px;
+            height: 65px;
+
+            background: rgba(255,255,255,0.15);
+
+            border-radius: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+
+            margin-bottom: 18px;
+        }
+
+        .department-hero h2 {
+            margin: 0 0 10px;
+            font-size: 28px;
+        }
+
+        .department-hero p {
+            margin: 0;
+            line-height: 1.6;
+            opacity: 0.92;
+        }
+
+
+        /* INFO GRID */
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .info-card {
+            background: white;
+
+            border: 1px solid #e1e7ed;
+
+            border-radius: 16px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 5px 18px rgba(0,0,0,0.04);
+        }
+
+        .info-card h3 {
+            margin: 0 0 12px;
+
+            color: #173f63;
+
+            font-size: 17px;
+        }
+
+        .info-card p {
+            margin: 0;
+
+            color: #6b7280;
+
+            line-height: 1.6;
+
+            font-size: 14px;
+        }
+
+
+        /* SUBJECT LIST */
+
+        .subject-list {
+            margin: 0;
+            padding-left: 20px;
+
+            color: #6b7280;
+
+            line-height: 1.9;
+
+            font-size: 14px;
+        }
+
+
+        /* CTA */
+
+        .ask-card {
+            margin-top: 22px;
+
+            background: white;
+
+            border: 1px solid #e1e7ed;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+            text-align: center;
+        }
+
+        .ask-card h3 {
+            margin: 0 0 8px;
+
+            color: #173f63;
+        }
+
+        .ask-card p {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .ask-button {
+            border: none;
+
+            background: #0b4f8a;
+
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+        }
+
+        .ask-button:hover {
+            background: #083d6b;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .details-header {
+                padding: 18px;
+            }
+
+            .details-container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .department-hero {
+                padding: 25px;
+            }
+
+            .department-hero h2 {
+                font-size: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="details-page">
+
+
+    <!-- HEADER -->
+
+    <header class="details-header">
+
+        <div class="details-header-inner">
+
+            <button
+                class="details-back"
+                onclick="window.location.href='/departments'">
+
+                ←
+
+            </button>
+
+
+            <div>
+
+                <h1>
+                    Department Details
+                </h1>
+
+                <p>
+                    Kings College of Engineering
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+
+    <main class="details-container">
+
+
+        <!-- HERO -->
+
+        <section class="department-hero">
+
+            <div
+                class="department-hero-icon"
+                id="departmentIcon">
+
+                🎓
+
+            </div>
+
+
+            <h2 id="departmentName">
+                Department
+            </h2>
+
+
+            <p id="departmentDescription">
+                Explore the department and its academic programmes.
+            </p>
+
+        </section>
+
+
+
+        <!-- INFORMATION -->
+
+        <section class="info-grid">
+
+
+            <!-- PROGRAMMES -->
+
+            <div class="info-card">
+
+                <h3>
+                    📚 Programmes
+                </h3>
+
+                <p id="programmes">
+                    Programme information will appear here.
+                </p>
+
+            </div>
+
+
+
+            <!-- AREAS -->
+
+            <div class="info-card">
+
+                <h3>
+                    💡 Areas of Study
+                </h3>
+
+                <ul
+                    class="subject-list"
+                    id="areas">
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- CAREER -->
+
+            <div class="info-card">
+
+                <h3>
+                    💼 Career Opportunities
+                </h3>
+
+                <p id="careers">
+                    Career information will appear here.
+                </p>
+
+            </div>
+
+
+
+            <!-- DEPARTMENT INFO -->
+
+            <div class="info-card">
+
+                <h3>
+                    🏛️ Department Information
+                </h3>
+
+                <p id="departmentInfo">
+                    Kings College of Engineering
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ASK ASSISTANT -->
+
+        <section class="ask-card">
+
+            <h3>
+                🤖 Have questions about this department?
+            </h3>
+
+            <p>
+                Ask our AI Assistant for more information.
+            </p>
+
+            <button
+                class="ask-button"
+                onclick="window.location.href='/chat'">
+
+                Ask AI Assistant →
+
+            </button>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<script>
+
+
+const department =
+    localStorage.getItem("selectedDepartment");
+
+
+const departmentData = {
+
+
+    "Computer Science and Engineering": {
+
+        icon: "💻",
+
+        description:
+            "Learn programming, software development, artificial intelligence, databases and modern computing technologies.",
+
+        programmes:
+            "B.E. Computer Science and Engineering",
+
+        areas: [
+            "Programming",
+            "Database Systems",
+            "Artificial Intelligence",
+            "Machine Learning",
+            "Web Development"
+        ],
+
+        careers:
+            "Software Developer, Web Developer, Data Analyst, AI Engineer, System Engineer and related technology roles.",
+
+        info:
+            "The department focuses on computing fundamentals, software technologies and emerging areas of computer science."
+
+    },
+
+
+    "Artificial Intelligence and Data Science": {
+
+        icon: "🤖",
+
+        description:
+            "Explore artificial intelligence, machine learning, data analytics and intelligent systems.",
+
+        programmes:
+            "B.Tech. Artificial Intelligence and Data Science",
+
+        areas: [
+            "Artificial Intelligence",
+            "Machine Learning",
+            "Data Science",
+            "Data Analytics",
+            "Deep Learning"
+        ],
+
+        careers:
+            "AI Engineer, Data Scientist, Machine Learning Engineer, Data Analyst and related intelligent technology roles.",
+
+        info:
+            "The programme combines artificial intelligence, data science and modern computational techniques."
+
+    },
+
+
+    "Electronics and Communication Engineering": {
+
+        icon: "📡",
+
+        description:
+            "Study electronics, communication systems, embedded technologies and digital systems.",
+
+        programmes:
+            "B.E. Electronics and Communication Engineering",
+
+        areas: [
+            "Digital Electronics",
+            "Communication Systems",
+            "Embedded Systems",
+            "Signal Processing",
+            "VLSI"
+        ],
+
+        careers:
+            "Embedded Engineer, Electronics Engineer, Communication Engineer, VLSI Engineer and related technical roles.",
+
+        info:
+            "The department focuses on electronics, communication and embedded technologies."
+
+    },
+
+
+    "Electrical and Electronics Engineering": {
+
+        icon: "⚡",
+
+        description:
+            "Study electrical systems, power electronics, electrical machines and automation.",
+
+        programmes:
+            "B.E. Electrical and Electronics Engineering",
+
+        areas: [
+            "Electrical Machines",
+            "Power Electronics",
+            "Control Systems",
+            "Renewable Energy",
+            "Electrical Systems"
+        ],
+
+        careers:
+            "Electrical Engineer, Power Electronics Engineer, Automation Engineer and related engineering roles.",
+
+        info:
+            "The department focuses on electrical engineering, power systems and modern electrical technologies."
+
+    },
+
+
+    "Mechanical Engineering": {
+
+        icon: "⚙️",
+
+        description:
+            "Explore mechanical design, manufacturing, engineering systems and modern technologies.",
+
+        programmes:
+            "B.E. Mechanical Engineering",
+
+        areas: [
+            "Machine Design",
+            "Manufacturing",
+            "Thermal Engineering",
+            "CAD/CAM",
+            "Robotics"
+        ],
+
+        careers:
+            "Mechanical Engineer, Design Engineer, Manufacturing Engineer, Production Engineer and related roles.",
+
+        info:
+            "The department focuses on design, manufacturing, thermal systems and mechanical engineering applications."
+
+    },
+
+
+    "Civil Engineering": {
+
+        icon: "🏗️",
+
+        description:
+            "Learn structural engineering, construction, infrastructure and environmental engineering.",
+
+        programmes:
+            "B.E. Civil Engineering",
+
+        areas: [
+            "Structural Engineering",
+            "Construction",
+            "Transportation",
+            "Environmental Engineering",
+            "Surveying"
+        ],
+
+        careers:
+            "Civil Engineer, Structural Engineer, Site Engineer, Construction Engineer and related infrastructure roles.",
+
+        info:
+            "The department focuses on infrastructure, construction and structural engineering."
+
+    },
+
+
+    "Information Technology": {
+
+        icon: "🖥️",
+
+        description:
+            "Study web technologies, databases, networking, cloud computing and modern IT solutions.",
+
+        programmes:
+            "B.Tech. Information Technology",
+
+        areas: [
+            "Web Development",
+            "Cloud Computing",
+            "Database Systems",
+            "Computer Networks",
+            "Cyber Security"
+        ],
+
+        careers:
+            "Software Developer, Cloud Engineer, Web Developer, Network Engineer and IT-related technology roles.",
+
+        info:
+            "The programme focuses on information technology, software systems and modern digital solutions."
+
+    }
+
+};
+
+
+if (department && departmentData[department]) {
+
+    const data =
+        departmentData[department];
+
+
+    document.getElementById(
+        "departmentName"
+    ).textContent = department;
+
+
+    document.getElementById(
+        "departmentIcon"
+    ).textContent = data.icon;
+
+
+    document.getElementById(
+        "departmentDescription"
+    ).textContent = data.description;
+
+
+    document.getElementById(
+        "programmes"
+    ).textContent = data.programmes;
+
+
+    document.getElementById(
+        "careers"
+    ).textContent = data.careers;
+
+
+    document.getElementById(
+        "departmentInfo"
+    ).textContent = data.info;
+
+
+    const areas =
+        document.getElementById("areas");
+
+
+    areas.innerHTML = "";
+
+
+    data.areas.forEach(function(area) {
+
+        const li =
+            document.createElement("li");
+
+        li.textContent = area;
+
+        areas.appendChild(li);
+
+    });
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Kings College of Engineering AI Assistant</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        /* =====================================================
+           KCE LANDING PAGE
+           Only this page is styled here.
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+           MAIN LANDING PAGE
+        ===================================================== */
+
+        .landing-page {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .landing-page .kce-header {
+            width: 100%;
+            height: 235px;
+
+            background: #ffffff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 10px 20px 8px;
+
+            position: relative;
+            z-index: 10;
+
+            border: none;
+        }
+
+
+        .landing-page .kce-logo-area {
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            width: 100%;
+        }
+
+
+        .landing-page .kce-logo {
+            width: 115px;
+            height: 115px;
+
+            object-fit: contain;
+
+            display: block;
+
+            margin: 0 0 5px;
+        }
+
+
+        .landing-page .kce-title {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .landing-page .kce-title h1 {
+            margin: 0;
+
+            padding: 0;
+
+            color: #062d61;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 37px;
+
+            line-height: 1.1;
+
+            font-weight: 700;
+
+            letter-spacing: 0.7px;
+
+            white-space: nowrap;
+        }
+
+
+        .landing-page .kce-title p {
+            margin: 13px 0 0;
+
+            padding: 0;
+
+            color: #062d61;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 14px;
+
+            line-height: 1;
+
+            font-weight: 600;
+
+            letter-spacing: 7px;
+        }
+
+
+        .landing-page .kce-title p span {
+            letter-spacing: 0;
+
+            margin: 0 7px;
+        }
+
+
+        /* =====================================================
+           HERO / COLLEGE IMAGE
+        ===================================================== */
+
+        .landing-page .kce-hero {
+            width: 100%;
+
+            height: calc(100vh - 235px);
+
+            min-height: 0;
+
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background-image:
+                linear-gradient(
+                    rgba(205, 213, 222, 0.34),
+                    rgba(205, 213, 222, 0.34)
+                ),
+                url("/static/images/chatbot.jpg");
+
+            background-size: cover;
+
+            background-position: center center;
+
+            background-repeat: no-repeat;
+
+            padding: 0;
+        }
+
+
+        /* =====================================================
+           HERO CONTENT
+        ===================================================== */
+
+        .landing-page .hero-content {
+            width: 100%;
+
+            max-width: 1000px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            position: relative;
+
+            z-index: 2;
+
+            padding: 5px 20px 15px;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           WELCOME ICON
+        ===================================================== */
+
+        .landing-page .welcome-icon {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(247, 244, 255, 0.96);
+
+            font-size: 29px;
+
+            margin-bottom: 13px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(20, 30, 50, 0.10);
+        }
+
+
+        /* =====================================================
+           WELCOME TITLE
+        ===================================================== */
+
+        .landing-page .hero-content h2 {
+            margin: 0;
+
+            color: #29294b;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 43px;
+
+            line-height: 1.05;
+
+            font-weight: 700;
+
+            text-shadow:
+                0 2px 5px
+                rgba(255, 255, 255, 0.85);
+        }
+
+
+        .landing-page .hero-content h3 {
+            margin: 4px 0 0;
+
+            color: #7057b7;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 43px;
+
+            line-height: 1.05;
+
+            font-weight: 700;
+
+            text-shadow:
+                0 2px 5px
+                rgba(255, 255, 255, 0.85);
+        }
+
+
+        /* =====================================================
+           DESCRIPTION
+        ===================================================== */
+
+        .landing-page .hero-description {
+            width: 700px;
+
+            max-width: 90%;
+
+            margin: 15px auto 25px;
+
+            color: #ffffff;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 14px;
+
+            line-height: 1.55;
+
+            font-weight: 500;
+
+            text-shadow:
+                0 1px 5px
+                rgba(0, 0, 0, 0.65);
+        }
+
+
+        /* =====================================================
+           BUTTON GRID
+           4 COLUMNS × 2 ROWS
+        ===================================================== */
+
+        .landing-page .quick-actions {
+            width: 885px;
+
+            max-width: 92%;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            grid-template-rows:
+                repeat(2, 64px);
+
+            gap: 10px;
+
+            margin: 0;
+        }
+
+
+        /* =====================================================
+           QUICK BUTTON
+        ===================================================== */
+
+        .landing-page .quick-action {
+            width: 100%;
+            height: 64px;
+
+            border: 1px solid
+                    rgba(255,255,255,0.9);
+
+            border-radius: 13px;
+
+            background:
+                rgba(4, 58, 108, 0.94);
+
+            color: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 8px 13px;
+
+            cursor: pointer;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            box-shadow:
+                0 5px 14px
+                rgba(15, 35, 65, 0.22);
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .landing-page .quick-action:hover {
+            transform: translateY(-2px);
+
+            background:
+                rgba(3, 69, 128, 0.98);
+
+            box-shadow:
+                0 8px 20px
+                rgba(15, 35, 65, 0.28);
+        }
+
+
+        /* =====================================================
+           BUTTON ICON
+        ===================================================== */
+
+        .landing-page .action-icon {
+            width: 35px;
+            height: 35px;
+
+            min-width: 35px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: #f7f4ff;
+
+            font-size: 17px;
+
+            color: #254a7d;
+        }
+
+
+        .landing-page .fee-icon {
+            font-size: 19px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           BUTTON TEXT
+        ===================================================== */
+
+        .landing-page .action-text {
+            flex: 1;
+
+            text-align: left;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .landing-page .arrow {
+            font-size: 25px;
+
+            font-weight: 300;
+
+            line-height: 1;
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           CHAT INPUT
+        ===================================================== */
+
+        .landing-page .landing-chat-box {
+            width: 775px;
+
+            max-width: 90%;
+
+            height: 62px;
+
+            display: flex;
+
+            align-items: center;
+
+            margin-top: 19px;
+
+            padding:
+                6px
+                7px
+                6px
+                21px;
+
+            background: #ffffff;
+
+            border: 1px solid #e2e3e8;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 7px 20px
+                rgba(25, 40, 65, 0.20);
+        }
+
+
+        .landing-page .chat-input-icon {
+            margin-right: 12px;
+
+            font-size: 17px;
+
+            color: #c6bddf;
+        }
+
+
+        .landing-page .landing-chat-box input {
+            flex: 1;
+
+            width: 100%;
+
+            height: 100%;
+
+            min-width: 0;
+
+            border: none;
+
+            outline: none;
+
+            background: transparent;
+
+            color: #44495b;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            font-size: 13px;
+        }
+
+
+        .landing-page .landing-chat-box input::placeholder {
+            color: #9aa1b6;
+        }
+
+
+        /* =====================================================
+           SEND BUTTON
+        ===================================================== */
+
+        .landing-page .landing-send-button {
+            width: 51px;
+            height: 51px;
+
+            min-width: 51px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #0968b9;
+
+            color: #ffffff;
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 4px 10px
+                rgba(0, 80, 160, 0.25);
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .landing-page .landing-send-button:hover {
+            transform: scale(1.06);
+
+            background: #075ca4;
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .landing-page .kce-header {
+                height: 190px;
+            }
+
+            .landing-page .kce-logo {
+                width: 90px;
+                height: 90px;
+            }
+
+            .landing-page .kce-title h1 {
+                font-size: 30px;
+            }
+
+            .landing-page .kce-title p {
+                font-size: 11px;
+                letter-spacing: 5px;
+            }
+
+            .landing-page .kce-hero {
+                height: calc(100vh - 190px);
+            }
+
+            .landing-page .hero-content h2,
+            .landing-page .hero-content h3 {
+                font-size: 36px;
+            }
+
+            .landing-page .quick-actions {
+                width: 90%;
+            }
+
+            .landing-page .landing-chat-box {
+                width: 80%;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 650px) {
+
+            body {
+                overflow-y: auto;
+            }
+
+            .landing-page {
+                height: auto;
+
+                min-height: 100vh;
+
+                overflow: visible;
+            }
+
+            .landing-page .kce-header {
+                height: 145px;
+
+                padding: 8px 10px;
+            }
+
+            .landing-page .kce-logo {
+                width: 68px;
+                height: 68px;
+            }
+
+            .landing-page .kce-title h1 {
+                font-size: 18px;
+
+                letter-spacing: 0.4px;
+            }
+
+            .landing-page .kce-title p {
+                margin-top: 7px;
+
+                font-size: 7px;
+
+                letter-spacing: 3px;
+            }
+
+            .landing-page .kce-title p span {
+                margin: 0 4px;
+            }
+
+            .landing-page .kce-hero {
+                height: auto;
+
+                min-height: calc(100vh - 145px);
+
+                padding: 30px 0;
+
+                background-position: center center;
+            }
+
+            .landing-page .hero-content {
+                padding: 15px 10px 25px;
+            }
+
+            .landing-page .welcome-icon {
+                width: 50px;
+                height: 50px;
+
+                font-size: 25px;
+
+                margin-bottom: 12px;
+            }
+
+            .landing-page .hero-content h2 {
+                font-size: 30px;
+            }
+
+            .landing-page .hero-content h3 {
+                font-size: 27px;
+            }
+
+            .landing-page .hero-description {
+                font-size: 11px;
+
+                margin-top: 12px;
+
+                margin-bottom: 20px;
+            }
+
+            .landing-page .quick-actions {
+                width: 94%;
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                grid-template-rows:
+                    repeat(4, 55px);
+
+                gap: 8px;
+            }
+
+            .landing-page .quick-action {
+                height: 55px;
+
+                padding: 6px 9px;
+
+                gap: 7px;
+
+                border-radius: 11px;
+            }
+
+            .landing-page .action-icon {
+                width: 29px;
+                height: 29px;
+
+                min-width: 29px;
+
+                font-size: 14px;
+            }
+
+            .landing-page .action-text {
+                font-size: 10px;
+            }
+
+            .landing-page .arrow {
+                font-size: 19px;
+            }
+
+            .landing-page .landing-chat-box {
+                width: 94%;
+
+                height: 56px;
+
+                margin-top: 15px;
+
+                padding-left: 15px;
+
+                border-radius: 17px;
+            }
+
+            .landing-page .landing-send-button {
+                width: 44px;
+                height: 44px;
+
+                min-width: 44px;
+
+                font-size: 18px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="landing-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header class="kce-header">
+
+        <div class="kce-logo-area">
+
+            <img
+                src="{{ url_for('static', filename='images/logo.jpg') }}"
+                alt="Kings College of Engineering Logo"
+                class="kce-logo"
+            >
+
+            <div class="kce-title">
+
+                <h1>
+                    KINGS COLLEGE OF ENGINEERING
+                </h1>
+
+                <p>
+                    S E E K
+                    <span>•</span>
+                    S T R I V E
+                    <span>•</span>
+                    S U C C E E D
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <main class="kce-hero">
+
+        <div class="hero-content">
+
+
+            <!-- WELCOME ICON -->
+
+            <div class="welcome-icon">
+                👋
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h2>
+                Welcome to
+            </h2>
+
+            <h3>
+                Kings College of Engineering
+            </h3>
+
+
+            <!-- DESCRIPTION -->
+
+            <p class="hero-description">
+
+                I'm your college assistant! Ask me anything about our
+                courses, departments, admissions, hostel,
+                placements and more.
+
+            </p>
+
+
+            <!-- =================================================
+                 BUTTONS
+            ================================================= -->
+
+            <div class="quick-actions">
+
+
+                <!-- COURSES -->
+
+                <button
+                    class="quick-action"
+                    onclick="askAbout('courses')">
+
+                    <span class="action-icon">
+                        🎓
+                    </span>
+
+                    <span class="action-text">
+                        Courses
+                    </span>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+                <!-- DEPARTMENTS -->
+
+                <button
+                    class="quick-action"
+                    onclick="window.location.href='/departments'">
+
+                    <span class="action-icon">
+                        🏛️
+                    </span>
+
+                    <span class="action-text">
+                        Departments
+                    </span>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+                <!-- ADMISSIONS -->
+
+                <button
+                    class="quick-action"
+                    onclick="askAbout('admissions')">
+
+                    <span class="action-icon">
+                        📋
+                    </span>
+
+                    <span class="action-text">
+                        Admissions
+                    </span>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+                <!-- HOSTEL -->
+
+                <button
+                    class="quick-action"
+                    onclick="askAbout('hostel')">
+
+                    <span class="action-icon">
+                        🏠
+                    </span>
+
+                    <span class="action-text">
+                        Hostel
+                    </span>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+                <!-- PLACEMENTS -->
+
+                <button
+                    class="quick-action"
+                    onclick="askAbout('placements')">
+
+                    <span class="action-icon">
+                        💼
+                    </span>
+
+                    <span class="action-text">
+                        Placements
+                    </span>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+                <!-- FEES -->
+
+                <button
+                    class="quick-action"
+                    onclick="askAbout('fees')">
+
+                    <span class="action-icon fee-icon">
+                        ₹
+                    </span>
+
+                    <span class="action-text">
+                        Fees
+                    </span>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+                <!-- CAMPUS MAP -->
+
+                <button
+                    class="quick-action"
+                    onclick="window.location.href='/map'">
+
+                    <span class="action-icon">
+                        📍
+                    </span>
+
+                    <span class="action-text">
+                        Campus Map
+                    </span>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+                <!-- EVENTS -->
+
+                <button
+                    class="quick-action"
+                    onclick="window.location.href='/events'">
+
+                    <span class="action-icon">
+                        🗓️
+                    </span>
+
+                    <span class="action-text">
+                        Events
+                    </span>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 CHAT INPUT
+            ================================================= -->
+
+            <div class="landing-chat-box">
+
+                <span class="chat-input-icon">
+                    💬
+                </span>
+
+                <input
+                    type="text"
+                    id="landing-question"
+                    placeholder="Type your message here..."
+                    autocomplete="off"
+                >
+
+                <button
+                    class="landing-send-button"
+                    onclick="openChat()">
+
+                    ➤
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     LANDING PAGE JAVASCRIPT
+===================================================== -->
+
+<script>
+
+function openChat() {
+
+    const input =
+        document.getElementById(
+            "landing-question"
+        );
+
+    const question =
+        input.value.trim();
+
+    if (question !== "") {
+
+        localStorage.setItem(
+            "initialQuestion",
+            question
+        );
+
+    }
+
+    window.location.href = "/chat";
+}
+
+
+function askAbout(topic) {
+
+    localStorage.setItem(
+        "initialQuestion",
+        "Tell me about " + topic
+    );
+
+    window.location.href = "/chat";
+}
+
+
+const landingInput =
+    document.getElementById(
+        "landing-question"
+    );
+
+
+if (landingInput) {
+
+    landingInput.addEventListener(
+        "keypress",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                openChat();
+
+            }
+
+        }
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
