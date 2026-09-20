@@ -1,628 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% set active = 'chat' %}
 
-    <title>KCE AI Assistant</title>
+{% block title %}AI Chat · KCE{% endblock %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+{% block content %}
 
-<body>
+<section class="chatapp">
 
-<div class="dashboard">
+    <!-- =========================
+         CHAT HEADER
+         ========================= -->
+    <div class="chat-top">
 
-    <!-- ================= SIDEBAR ================= -->
+        <div class="av">
+            🤖
+        </div>
 
-    <aside class="dashboard-sidebar">
+        <div>
+            <b>KCE AI Assistant</b>
+            <span class="online">Online</span>
+        </div>
 
-        <div class="sidebar-brand">
+        <button
+            class="btn ghost"
+            id="clear"
+            type="button"
+        >
+            New chat
+        </button>
 
-            <img
-                src="{{ url_for('static', filename='images/logo.jpg') }}"
-                alt="KCE Logo"
+    </div>
+
+
+    <!-- =========================
+         CHAT MESSAGES
+         ========================= -->
+    <div
+        class="log"
+        id="log"
+        aria-live="polite"
+    ></div>
+
+
+    <!-- =========================
+         QUICK QUESTIONS
+         ========================= -->
+    <div
+        class="suggest"
+        id="suggest"
+    >
+
+        <button
+            class="chip"
+            type="button"
+            data-q="What are the courses available?"
+        >
+            🎓 What are the courses available?
+        </button>
+
+        <button
+            class="chip"
+            type="button"
+            data-q="Tell me about CSE department"
+        >
+            💻 Tell me about CSE department
+        </button>
+
+        <button
+            class="chip"
+            type="button"
+            data-q="Is there a hostel?"
+        >
+            🏠 Is there a hostel?
+        </button>
+
+        <button
+            class="chip"
+            type="button"
+            data-q="What is the TNEA code?"
+        >
+            📋 What is the TNEA code?
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         CHAT INPUT
+         ========================= -->
+    <form
+        class="ask"
+        id="askForm"
+        autocomplete="off"
+    >
+
+        <div class="chat-input-box">
+
+            <input
+                id="q"
+                type="text"
+                placeholder="Message KCE AI..."
+                aria-label="Your question"
+                autocomplete="off"
             >
 
-            <div>
-                <h2>KINGS</h2>
-                <span>COLLEGE OF ENGINEERING</span>
-            </div>
 
-        </div>
-
-
-        <nav class="dashboard-nav">
-
-            <button class="dashboard-nav-item active"
-                    onclick="window.location.href='/'">
-                <span>⌂</span>
-                <span>Home</span>
-            </button>
-
-            <button class="dashboard-nav-item"
-                    onclick="window.location.href='/chat'">
-                <span>💬</span>
-                <span>AI Chat</span>
-            </button>
-
-            <button class="dashboard-nav-item"
-                    onclick="window.location.href='/chat'">
-                <span>🎓</span>
-                <span>Courses</span>
-            </button>
-
-            <button class="dashboard-nav-item"
-                    onclick="window.location.href='/departments'">
-                <span>🏛</span>
-                <span>Departments</span>
-            </button>
-
-            <button class="dashboard-nav-item"
-                    onclick="window.location.href='/compare'">
-                <span>⚖</span>
-                <span>Compare Departments</span>
-            </button>
-
-            <button class="dashboard-nav-item"
-                    onclick="window.location.href='/map'">
-                <span>📍</span>
-                <span>Campus Map</span>
-            </button>
-
-            <button class="dashboard-nav-item"
-                    onclick="window.location.href='/events'">
-                <span>📅</span>
-                <span>Events</span>
-            </button>
-
-            <button class="dashboard-nav-item emergency-item"
-                    onclick="window.location.href='/emergency'">
-                <span>🚨</span>
-                <span>Emergency</span>
-            </button>
-
-        </nav>
-
-
-        <div class="sidebar-motto">
-
-            <p>Seek • Strive • Succeed</p>
-
-        </div>
-
-
-        <div class="ai-online-card">
-
-            <div class="ai-online-icon">
-                🤖
-            </div>
-
-            <div>
-                <strong>KCE AI Online</strong>
-                <small>Always here to help</small>
-            </div>
-
-            <span class="online-dot"></span>
-
-        </div>
-
-    </aside>
-
-
-
-    <!-- ================= MAIN AREA ================= -->
-
-    <main class="dashboard-main">
-
-
-        <!-- TOP BAR -->
-
-        <header class="dashboard-topbar">
-
-            <div class="dashboard-search">
-
-                <span>⌕</span>
-
-                <input
-                    type="text"
-                    placeholder="Search anything about KCE..."
-                >
-
-            </div>
-
-
-            <div class="dashboard-profile">
-
-                <button class="theme-button">
-                    ☼
-                </button>
-
-                <button class="notification-button">
-                    ♡
-                </button>
-
-                <div class="profile-avatar">
-                    👤
-                </div>
-
-                <span>Student</span>
-
-                <span>⌄</span>
-
-            </div>
-
-        </header>
-
-
-
-        <!-- CONTENT -->
-
-        <section class="dashboard-content">
-
-
-            <!-- HERO -->
-
-            <div class="dashboard-hero">
-
-                <div class="hero-text">
-
-                    <span class="hero-small">
-                        Hello! 👋
-                    </span>
-
-                    <h1>
-                        I'm KCE AI Assistant
-                    </h1>
-
-                    <p>
-                        Your virtual guide to everything at
-                        Kings College of Engineering.
-                    </p>
-
-
-                    <div class="hero-actions">
-
-                        <button onclick="focusChat()">
-                            Ask
-                        </button>
-
-                        <button onclick="window.location.href='/departments'">
-                            Explore
-                        </button>
-
-                        <button onclick="focusChat()">
-                            Get Help
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <div class="hero-image">
-
-                    <img
-                        src="{{ url_for('static', filename='images/chatbot.jpg') }}"
-                        alt="Kings College of Engineering"
-                    >
-
-                    <div class="robot">
-                        🤖
-                    </div>
-
-                    <div class="robot-message">
-                        Let's explore KCE!
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- FEATURE CARDS -->
-
-            <div class="feature-grid">
-
-
-                <button class="feature-card courses-card"
-                        onclick="sendQuickMessage('What courses are available?')">
-
-                    <div class="feature-icon">
-                        🎓
-                    </div>
-
-                    <h3>Courses</h3>
-
-                    <p>
-                        Explore all courses
-                        and programmes
-                    </p>
-
-                    <span class="feature-arrow">→</span>
-
-                </button>
-
-
-
-                <button class="feature-card admission-card"
-                        onclick="sendQuickMessage('Tell me about admissions')">
-
-                    <div class="feature-icon">
-                        📄
-                    </div>
-
-                    <h3>Admissions</h3>
-
-                    <p>
-                        Eligibility, process
-                        and important dates
-                    </p>
-
-                    <span class="feature-arrow">→</span>
-
-                </button>
-
-
-
-                <button class="feature-card hostel-card"
-                        onclick="sendQuickMessage('Tell me about hostel')">
-
-                    <div class="feature-icon">
-                        🏠
-                    </div>
-
-                    <h3>Hostel</h3>
-
-                    <p>
-                        Accommodation
-                        and facilities
-                    </p>
-
-                    <span class="feature-arrow">→</span>
-
-                </button>
-
-
-
-                <button class="feature-card placement-card"
-                        onclick="sendQuickMessage('Tell me about placements')">
-
-                    <div class="feature-icon">
-                        💼
-                    </div>
-
-                    <h3>Placements</h3>
-
-                    <p>
-                        Career opportunities
-                        and recruiters
-                    </p>
-
-                    <span class="feature-arrow">→</span>
-
-                </button>
-
-            </div>
-
-
-
-            <!-- CHAT AREA -->
-
-            <div class="dashboard-chat">
-
-
-                <div class="chat-title">
-
-                    <span>✨</span>
-
-                    <h2>
-                        Ask KCE AI Anything...
-                    </h2>
-
-                </div>
-
-
-                <div id="chat-box"
-                     class="dashboard-chat-box">
-
-                    <div class="dashboard-welcome">
-
-                        <div class="bot-small">
-                            🤖
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Hi! I'm KCE AI Assistant 👋
-                            </strong>
-
-                            <p>
-                                How can I help you today?
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="quick-questions">
-
-                        <button onclick="sendQuickMessage('What courses are available?')">
-                            What are the courses available?
-                        </button>
-
-                        <button onclick="sendQuickMessage('Tell me about CSE department')">
-                            Tell me about CSE department
-                        </button>
-
-                        <button onclick="sendQuickMessage('Is there a hostel?')">
-                            Is there a hostel?
-                        </button>
-
-                        <button onclick="sendQuickMessage('What is the TNEA code?')">
-                            What is the TNEA code?
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <div class="dashboard-input">
-
-                    <span>✨</span>
-
-                    <input
-                        type="text"
-                        id="user-input"
-                        placeholder="Type your question here..."
-                        autocomplete="off"
-                    >
-
-                    <button onclick="sendMessage()">
-                        ➤
-                    </button>
-
-                </div>
-
-
-                <div class="input-options">
-
-                    <span>📎 Attach file</span>
-
-                    <span>🎙 Voice input</span>
-
-                </div>
-
-            </div>
-
-
-        </section>
-
-    </main>
-
-
-
-    <!-- ================= RIGHT PANEL ================= -->
-
-    <aside class="dashboard-right">
-
-
-        <!-- QUICK INFO -->
-
-        <div class="right-card">
-
-            <div class="right-card-title">
-
-                <h3>🏛 KCE Quick Info</h3>
-
-                <span>View All →</span>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span>🎓</span>
-
-                <div>
-                    <small>TNEA Code</small>
-                    <strong>3905</strong>
-                </div>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span>📍</span>
-
-                <div>
-                    <small>Location</small>
-                    <strong>Punalkulam, Tamil Nadu</strong>
-                </div>
-
-            </div>
-
-
-            <div class="info-row">
-
-                <span>🌐</span>
-
-                <div>
-                    <small>Website</small>
-                    <strong>kingsengg.edu.in</strong>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- RECENT CHATS -->
-
-        <div class="right-card">
-
-            <div class="right-card-title">
-
-                <h3>◷ Recent Chats</h3>
-
-                <span>View All →</span>
-
-            </div>
-
-
-            <div class="recent-chat">
-
-                <span>💬</span>
-
-                <div>
-                    <strong>What are the courses available?</strong>
-                    <small>2 mins ago</small>
-                </div>
-
-                <span>›</span>
-
-            </div>
-
-
-            <div class="recent-chat">
-
-                <span>💬</span>
-
-                <div>
-                    <strong>Tell me about CSE department</strong>
-                    <small>12 mins ago</small>
-                </div>
-
-                <span>›</span>
-
-            </div>
-
-
-            <div class="recent-chat">
-
-                <span>💬</span>
-
-                <div>
-                    <strong>Hostel facilities</strong>
-                    <small>1 hour ago</small>
-                </div>
-
-                <span>›</span>
-
-            </div>
-
-
-            <div class="recent-chat">
-
-                <span>💬</span>
-
-                <div>
-                    <strong>Placements details</strong>
-                    <small>3 hours ago</small>
-                </div>
-
-                <span>›</span>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- PROMO CARD -->
-
-        <div class="right-promo">
-
-            <img
-                src="{{ url_for('static', filename='images/chatbot.jpg') }}"
-                alt="KCE Campus"
+            <!-- Hidden language selector
+                 JS still uses this -->
+            <select
+                id="voiceLang"
+                hidden
             >
+                <option value="en-IN">English</option>
+                <option value="ta-IN">Tamil</option>
+            </select>
 
-            <div class="promo-overlay">
 
-                <h2>
-                    Build your
-                    <br>
-                    future at KCE
-                </h2>
+            <!-- MICROPHONE -->
+            <button
+                type="button"
+                id="mic"
+                class="chat-mic"
+                title="Voice message"
+                aria-label="Voice message"
+                aria-pressed="false"
+            >
+                🎤
+            </button>
 
-                <p>
-                    Quality education.
-                    Bright opportunities.
-                </p>
 
-                <button>
-                    Explore Campus →
-                </button>
-
-            </div>
+            <!-- SEND -->
+            <button
+                type="submit"
+                id="send"
+                class="chat-send"
+                title="Send message"
+                aria-label="Send message"
+            >
+                ➤
+            </button>
 
         </div>
 
-
-    </aside>
-
-</div>
+    </form>
 
 
+    <!-- VOICE STATUS -->
+    <div
+        id="voiceStatus"
+        class="voice-status"
+        hidden
+        aria-live="polite"
+    ></div>
 
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</section>
 
-
-<script>
-
-function focusChat() {
-
-    const input =
-        document.getElementById("user-input");
-
-    if (input) {
-
-        input.focus();
-
-    }
-
-}
+{% endblock %}
 
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+{% block scripts %}
 
-        const input =
-            document.getElementById("user-input");
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
 
-        if (input) {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
 
-            input.addEventListener(
-                "keypress",
-                function (event) {
+<script src="{{ url_for('static', filename='js/kce-chat.js') }}"></script>
 
-                    if (event.key === "Enter") {
-
-                        event.preventDefault();
-
-                        sendMessage();
-
-                    }
-
-                }
-            );
-
-        }
-
-    }
-);
-
-</script>
-
-</body>
-</html>
+{% endblock %}

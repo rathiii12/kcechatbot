@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% set active = 'courses' %}
+{% block title %}Courses · KCE{% endblock %}
+
+{% block content %}
+<header class="head">
+  <div class="tile">🎓</div>
+  <div><h1>Courses</h1><p>{{ programmes|length }} undergraduate programmes. Pick one to open its department.</p></div>
+</header>
+
+<div class="filters" role="group" aria-label="Filter by degree">
+  <button class="chip" data-f="All" aria-pressed="true">All</button>
+  <button class="chip" data-f="B.E." aria-pressed="false">B.E.</button>
+  <button class="chip" data-f="B.Tech" aria-pressed="false">B.Tech</button>
+</div>
+
+<div class="grid">
+  {% for p in programmes %}
+  <a class="pcard" href="{{ url_for('departments', d=p.slug) }}" data-deg="{{ p.degree }}">
+    <span class="code">{{ p.code }}</span>
+    <span class="deg">{{ p.degree }}</span>
+    <b>{{ p.name }}</b>
+    <span class="tags">{% for f in p.focus[:3] %}<span class="chip">{{ f }}</span>{% endfor %}</span>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.querySelectorAll('[data-f]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-f]').forEach(function (b) { b.setAttribute('aria-pressed', b === btn); });
+      document.querySelectorAll('.pcard').forEach(function (c) {
+        c.hidden = !(btn.dataset.f === 'All' || c.dataset.deg === btn.dataset.f);
+      });
+    });
+  });
+</script>
+{% endblock %}

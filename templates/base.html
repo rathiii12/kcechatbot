@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}KCE AI Assistant{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main KCE stylesheet -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/kce.css') }}"
+    >
+
+    {% block head %}{% endblock %}
+</head>
+
+<body data-page="{{ active }}">
+
+    <div class="app">
+
+        <!-- =========================
+             SIDEBAR
+             ========================= -->
+        <nav class="side" aria-label="Main">
+
+            <!-- BRAND -->
+            <a
+                class="brand"
+                href="{{ url_for('home') }}"
+                title="Back to home"
+            >
+
+                <div class="brand-mark">
+                    {% include "_logo.html" %}
+                </div>
+
+                <div class="brand-text">
+                    <b>KCE AI</b>
+                    <span>Kings College of Engineering</span>
+                </div>
+
+            </a>
+
+
+            <!-- HOME -->
+            <a
+                class="nav"
+                href="{{ url_for('home') }}"
+                {% if active == 'home' %}
+                    aria-current="page"
+                {% endif %}
+            >
+                <span class="ico">🏠</span>
+                <span>Home</span>
+            </a>
+
+
+            <!-- OTHER NAVIGATION -->
+            {% for key, label, icon, endpoint in nav %}
+
+            <a
+                class="nav"
+                href="{{ url_for(endpoint) }}"
+                {% if key == active %}
+                    aria-current="page"
+                {% endif %}
+            >
+
+                <span class="ico">{{ icon }}</span>
+                <span>{{ label }}</span>
+
+            </a>
+
+            {% endfor %}
+
+
+            <!-- SIDEBAR MOTTO -->
+            <div class="motto">
+                Seek • Strive • Succeed
+            </div>
+
+        </nav>
+
+
+        <!-- =========================
+             MAIN CONTENT
+             ========================= -->
+        <main class="stage">
+
+            <div class="page">
+
+                {% block content %}
+                {% endblock %}
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- Main JavaScript -->
+    <script src="{{ url_for('static', filename='js/kce.js') }}"></script>
+
+
+    <!-- Page-specific JavaScript -->
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+
+</html>

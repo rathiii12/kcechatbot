@@ -56,107 +56,65 @@
         .landing-page .kce-header {
             width: 100%;
             height: 235px;
-
             background: #ffffff;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             padding: 10px 20px 8px;
-
             position: relative;
             z-index: 10;
-
             border: none;
         }
-
 
         .landing-page .kce-logo-area {
             display: flex;
             flex-direction: column;
-
             align-items: center;
             justify-content: center;
-
             text-align: center;
-
             width: 100%;
         }
-
 
         .landing-page .kce-logo {
             width: 115px;
             height: 115px;
-
             object-fit: contain;
-
             display: block;
-
             margin: 0 0 5px;
         }
 
-
         .landing-page .kce-title {
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
-
             justify-content: center;
         }
 
-
         .landing-page .kce-title h1 {
             margin: 0;
-
             padding: 0;
-
             color: #062d61;
-
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
-
+            font-family: Georgia, "Times New Roman", serif;
             font-size: 37px;
-
             line-height: 1.1;
-
             font-weight: 700;
-
             letter-spacing: 0.7px;
-
             white-space: nowrap;
         }
 
-
         .landing-page .kce-title p {
             margin: 13px 0 0;
-
             padding: 0;
-
             color: #062d61;
-
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
+            font-family: "Segoe UI", Arial, sans-serif;
             font-size: 14px;
-
             line-height: 1;
-
             font-weight: 600;
-
             letter-spacing: 7px;
         }
 
-
         .landing-page .kce-title p span {
             letter-spacing: 0;
-
             margin: 0 7px;
         }
 
@@ -167,34 +125,22 @@
 
         .landing-page .kce-hero {
             width: 100%;
-
             height: calc(100vh - 235px);
-
             min-height: 0;
-
             position: relative;
-
             overflow: hidden;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             background-image:
                 linear-gradient(
                     rgba(205, 213, 222, 0.34),
                     rgba(205, 213, 222, 0.34)
                 ),
                 url("/static/images/chatbot.jpg");
-
             background-size: cover;
-
             background-position: center center;
-
             background-repeat: no-repeat;
-
             padding: 0;
         }
 
@@ -205,270 +151,145 @@
 
         .landing-page .hero-content {
             width: 100%;
-
             max-width: 1000px;
-
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
-
             justify-content: center;
-
             text-align: center;
-
             position: relative;
-
             z-index: 2;
-
             padding: 5px 20px 15px;
-
             transform: translateY(-2px);
         }
-
-
-        /* =====================================================
-           WELCOME ICON
-        ===================================================== */
 
         .landing-page .welcome-icon {
             width: 58px;
             height: 58px;
-
             display: flex;
-
             align-items: center;
             justify-content: center;
-
             border-radius: 50%;
-
             background: rgba(247, 244, 255, 0.96);
-
             font-size: 29px;
-
             margin-bottom: 13px;
-
-            box-shadow:
-                0 5px 15px
-                rgba(20, 30, 50, 0.10);
+            box-shadow: 0 5px 15px rgba(20, 30, 50, 0.10);
         }
-
-
-        /* =====================================================
-           WELCOME TITLE
-        ===================================================== */
 
         .landing-page .hero-content h2 {
             margin: 0;
-
             color: #29294b;
-
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
+            font-family: "Segoe UI", Arial, sans-serif;
             font-size: 43px;
-
             line-height: 1.05;
-
             font-weight: 700;
-
-            text-shadow:
-                0 2px 5px
-                rgba(255, 255, 255, 0.85);
+            text-shadow: 0 2px 5px rgba(255, 255, 255, 0.85);
         }
-
 
         .landing-page .hero-content h3 {
             margin: 4px 0 0;
-
             color: #7057b7;
-
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
+            font-family: "Segoe UI", Arial, sans-serif;
             font-size: 43px;
-
             line-height: 1.05;
-
             font-weight: 700;
-
-            text-shadow:
-                0 2px 5px
-                rgba(255, 255, 255, 0.85);
+            text-shadow: 0 2px 5px rgba(255, 255, 255, 0.85);
         }
-
-
-        /* =====================================================
-           DESCRIPTION
-        ===================================================== */
 
         .landing-page .hero-description {
             width: 700px;
-
             max-width: 90%;
-
             margin: 15px auto 25px;
-
             color: #ffffff;
-
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
+            font-family: "Segoe UI", Arial, sans-serif;
             font-size: 14px;
-
             line-height: 1.55;
-
             font-weight: 500;
-
-            text-shadow:
-                0 1px 5px
-                rgba(0, 0, 0, 0.65);
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
         }
 
 
         /* =====================================================
-           BUTTON GRID
-           4 COLUMNS × 2 ROWS
+           ROLE BUTTONS  (NEW)
+           Students / Faculties / Guest
+           Desktop: 3 in a row.  Mobile: stacked.
         ===================================================== */
 
         .landing-page .quick-actions {
-            width: 885px;
-
+            width: 780px;
             max-width: 92%;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            grid-template-rows:
-                repeat(2, 64px);
-
-            gap: 10px;
-
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(80px, auto);
+            gap: 12px;
             margin: 0;
         }
 
-
-        /* =====================================================
-           QUICK BUTTON
-        ===================================================== */
-
         .landing-page .quick-action {
             width: 100%;
-            height: 64px;
-
-            border: 1px solid
-                    rgba(255,255,255,0.9);
-
-            border-radius: 13px;
-
-            background:
-                rgba(4, 58, 108, 0.94);
-
+            min-height: 80px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 14px;
+            background: rgba(4, 58, 108, 0.94);
             color: #ffffff;
-
             display: flex;
-
             align-items: center;
-
             gap: 13px;
-
-            padding: 8px 13px;
-
+            padding: 10px 14px;
             cursor: pointer;
-
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
-            box-shadow:
-                0 5px 14px
-                rgba(15, 35, 65, 0.22);
-
+            font-family: "Segoe UI", Arial, sans-serif;
+            box-shadow: 0 5px 14px rgba(15, 35, 65, 0.22);
             transition:
                 transform 0.2s ease,
                 background 0.2s ease,
                 box-shadow 0.2s ease;
         }
 
-
         .landing-page .quick-action:hover {
             transform: translateY(-2px);
-
-            background:
-                rgba(3, 69, 128, 0.98);
-
-            box-shadow:
-                0 8px 20px
-                rgba(15, 35, 65, 0.28);
+            background: rgba(3, 69, 128, 0.98);
+            box-shadow: 0 8px 20px rgba(15, 35, 65, 0.28);
         }
 
-
-        /* =====================================================
-           BUTTON ICON
-        ===================================================== */
-
         .landing-page .action-icon {
-            width: 35px;
-            height: 35px;
-
-            min-width: 35px;
-
+            width: 42px;
+            height: 42px;
+            min-width: 42px;
             display: flex;
-
             align-items: center;
             justify-content: center;
-
-            border-radius: 9px;
-
+            border-radius: 11px;
             background: #f7f4ff;
-
-            font-size: 17px;
-
+            font-size: 21px;
             color: #254a7d;
         }
 
+        .landing-page .action-text {
+            flex: 1;
+            min-width: 0;
+            text-align: left;
+            color: #ffffff;
+        }
 
-        .landing-page .fee-icon {
-            font-size: 19px;
-
+        .landing-page .action-text strong {
+            display: block;
+            font-size: 15px;
             font-weight: 700;
         }
 
-
-        /* =====================================================
-           BUTTON TEXT
-        ===================================================== */
-
-        .landing-page .action-text {
-            flex: 1;
-
-            text-align: left;
-
-            color: #ffffff;
-
-            font-size: 13px;
-
-            font-weight: 600;
+        .landing-page .action-text small {
+            display: block;
+            margin-top: 3px;
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 1.3;
+            color: rgba(255, 255, 255, 0.82);
         }
-
 
         .landing-page .arrow {
             font-size: 25px;
-
             font-weight: 300;
-
             line-height: 1;
-
             color: #ffffff;
         }
 
@@ -479,115 +300,62 @@
 
         .landing-page .landing-chat-box {
             width: 775px;
-
             max-width: 90%;
-
             height: 62px;
-
             display: flex;
-
             align-items: center;
-
             margin-top: 19px;
-
-            padding:
-                6px
-                7px
-                6px
-                21px;
-
+            padding: 6px 7px 6px 21px;
             background: #ffffff;
-
             border: 1px solid #e2e3e8;
-
             border-radius: 20px;
-
-            box-shadow:
-                0 7px 20px
-                rgba(25, 40, 65, 0.20);
+            box-shadow: 0 7px 20px rgba(25, 40, 65, 0.20);
         }
-
 
         .landing-page .chat-input-icon {
             margin-right: 12px;
-
             font-size: 17px;
-
             color: #c6bddf;
         }
 
-
         .landing-page .landing-chat-box input {
             flex: 1;
-
             width: 100%;
-
             height: 100%;
-
             min-width: 0;
-
             border: none;
-
             outline: none;
-
             background: transparent;
-
             color: #44495b;
-
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
+            font-family: "Segoe UI", Arial, sans-serif;
             font-size: 13px;
         }
-
 
         .landing-page .landing-chat-box input::placeholder {
             color: #9aa1b6;
         }
 
-
-        /* =====================================================
-           SEND BUTTON
-        ===================================================== */
-
         .landing-page .landing-send-button {
             width: 51px;
             height: 51px;
-
             min-width: 51px;
-
             border: none;
-
             border-radius: 50%;
-
             display: flex;
-
             align-items: center;
             justify-content: center;
-
             background: #0968b9;
-
             color: #ffffff;
-
             font-size: 22px;
-
             cursor: pointer;
-
-            box-shadow:
-                0 4px 10px
-                rgba(0, 80, 160, 0.25);
-
+            box-shadow: 0 4px 10px rgba(0, 80, 160, 0.25);
             transition:
                 transform 0.2s ease,
                 background 0.2s ease;
         }
 
-
         .landing-page .landing-send-button:hover {
             transform: scale(1.06);
-
             background: #075ca4;
         }
 
@@ -627,6 +395,7 @@
 
             .landing-page .quick-actions {
                 width: 90%;
+                max-width: 780px;
             }
 
             .landing-page .landing-chat-box {
@@ -647,15 +416,12 @@
 
             .landing-page {
                 height: auto;
-
                 min-height: 100vh;
-
                 overflow: visible;
             }
 
             .landing-page .kce-header {
                 height: 145px;
-
                 padding: 8px 10px;
             }
 
@@ -666,15 +432,12 @@
 
             .landing-page .kce-title h1 {
                 font-size: 18px;
-
                 letter-spacing: 0.4px;
             }
 
             .landing-page .kce-title p {
                 margin-top: 7px;
-
-                font-size: 7px;
-
+                font-size: 8px;
                 letter-spacing: 3px;
             }
 
@@ -684,11 +447,8 @@
 
             .landing-page .kce-hero {
                 height: auto;
-
                 min-height: calc(100vh - 145px);
-
                 padding: 30px 0;
-
                 background-position: center center;
             }
 
@@ -699,9 +459,7 @@
             .landing-page .welcome-icon {
                 width: 50px;
                 height: 50px;
-
                 font-size: 25px;
-
                 margin-bottom: 12px;
             }
 
@@ -715,70 +473,67 @@
 
             .landing-page .hero-description {
                 font-size: 11px;
-
                 margin-top: 12px;
-
                 margin-bottom: 20px;
             }
 
+            /* three buttons stacked, full width */
             .landing-page .quick-actions {
                 width: 94%;
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-
-                grid-template-rows:
-                    repeat(4, 55px);
-
-                gap: 8px;
+                max-width: 440px;
+                grid-template-columns: 1fr;
+                grid-auto-rows: minmax(68px, auto);
+                gap: 10px;
             }
 
             .landing-page .quick-action {
-                height: 55px;
-
-                padding: 6px 9px;
-
-                gap: 7px;
-
-                border-radius: 11px;
+                min-height: 68px;
+                padding: 9px 13px;
+                gap: 13px;
+                border-radius: 14px;
             }
 
             .landing-page .action-icon {
-                width: 29px;
-                height: 29px;
-
-                min-width: 29px;
-
-                font-size: 14px;
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
+                font-size: 20px;
             }
 
-            .landing-page .action-text {
-                font-size: 10px;
+            .landing-page .action-text strong {
+                font-size: 16px;
+            }
+
+            .landing-page .action-text small {
+                font-size: 11.5px;
             }
 
             .landing-page .arrow {
-                font-size: 19px;
+                font-size: 24px;
             }
 
             .landing-page .landing-chat-box {
                 width: 94%;
-
                 height: 56px;
-
                 margin-top: 15px;
-
                 padding-left: 15px;
-
                 border-radius: 17px;
             }
 
             .landing-page .landing-send-button {
                 width: 44px;
                 height: 44px;
-
                 min-width: 44px;
-
                 font-size: 18px;
+            }
+        }
+
+        /* very small phones: keep the title on one line */
+        @media (max-width: 400px) {
+
+            .landing-page .kce-title h1 {
+                font-size: 15.5px;
+                letter-spacing: 0.2px;
             }
         }
 
@@ -866,24 +621,25 @@
 
 
             <!-- =================================================
-                 BUTTONS
+                 ROLE BUTTONS  (Students / Faculties / Guest)
             ================================================= -->
 
             <div class="quick-actions">
 
 
-                <!-- COURSES -->
+                <!-- STUDENTS -->
 
                 <button
                     class="quick-action"
-                    onclick="askAbout('courses')">
+                    onclick="chooseRole('student')">
 
                     <span class="action-icon">
                         🎓
                     </span>
 
                     <span class="action-text">
-                        Courses
+                        <strong>Students</strong>
+                        <small>Courses, fees, hostel, placements</small>
                     </span>
 
                     <span class="arrow">
@@ -893,18 +649,19 @@
                 </button>
 
 
-                <!-- DEPARTMENTS -->
+                <!-- FACULTIES -->
 
                 <button
                     class="quick-action"
-                    onclick="window.location.href='/departments'">
+                    onclick="chooseRole('faculty')">
 
                     <span class="action-icon">
-                        🏛️
+                        🧑‍🏫
                     </span>
 
                     <span class="action-text">
-                        Departments
+                        <strong>Faculties</strong>
+                        <small>Departments, events, campus info</small>
                     </span>
 
                     <span class="arrow">
@@ -914,123 +671,19 @@
                 </button>
 
 
-                <!-- ADMISSIONS -->
+                <!-- GUEST -->
 
                 <button
                     class="quick-action"
-                    onclick="askAbout('admissions')">
+                    onclick="chooseRole('guest')">
 
                     <span class="action-icon">
-                        📋
+                        🙋
                     </span>
 
                     <span class="action-text">
-                        Admissions
-                    </span>
-
-                    <span class="arrow">
-                        ›
-                    </span>
-
-                </button>
-
-
-                <!-- HOSTEL -->
-
-                <button
-                    class="quick-action"
-                    onclick="askAbout('hostel')">
-
-                    <span class="action-icon">
-                        🏠
-                    </span>
-
-                    <span class="action-text">
-                        Hostel
-                    </span>
-
-                    <span class="arrow">
-                        ›
-                    </span>
-
-                </button>
-
-
-                <!-- PLACEMENTS -->
-
-                <button
-                    class="quick-action"
-                    onclick="askAbout('placements')">
-
-                    <span class="action-icon">
-                        💼
-                    </span>
-
-                    <span class="action-text">
-                        Placements
-                    </span>
-
-                    <span class="arrow">
-                        ›
-                    </span>
-
-                </button>
-
-
-                <!-- FEES -->
-
-                <button
-                    class="quick-action"
-                    onclick="askAbout('fees')">
-
-                    <span class="action-icon fee-icon">
-                        ₹
-                    </span>
-
-                    <span class="action-text">
-                        Fees
-                    </span>
-
-                    <span class="arrow">
-                        ›
-                    </span>
-
-                </button>
-
-
-                <!-- CAMPUS MAP -->
-
-                <button
-                    class="quick-action"
-                    onclick="window.location.href='/map'">
-
-                    <span class="action-icon">
-                        📍
-                    </span>
-
-                    <span class="action-text">
-                        Campus Map
-                    </span>
-
-                    <span class="arrow">
-                        ›
-                    </span>
-
-                </button>
-
-
-                <!-- EVENTS -->
-
-                <button
-                    class="quick-action"
-                    onclick="window.location.href='/events'">
-
-                    <span class="action-icon">
-                        🗓️
-                    </span>
-
-                    <span class="action-text">
-                        Events
+                        <strong>Guest</strong>
+                        <small>Admissions, campus map, contact</small>
                     </span>
 
                     <span class="arrow">
@@ -1084,6 +737,18 @@
 
 <script>
 
+/* Students / Faculties / Guest -> all open the same common chat page */
+function chooseRole(role) {
+
+    localStorage.removeItem("initialQuestion");
+
+    /* start a fresh conversation every time */
+    sessionStorage.removeItem("kce-chat");
+
+    window.location.href = "/chat";
+}
+
+
 function openChat() {
 
     const input =
@@ -1102,17 +767,6 @@ function openChat() {
         );
 
     }
-
-    window.location.href = "/chat";
-}
-
-
-function askAbout(topic) {
-
-    localStorage.setItem(
-        "initialQuestion",
-        "Tell me about " + topic
-    );
 
     window.location.href = "/chat";
 }
